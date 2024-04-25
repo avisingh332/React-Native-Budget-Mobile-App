@@ -4,14 +4,22 @@ import { Provider, useSelector} from 'react-redux';
 import {store} from './redux/store';
 import MyComp from './components/MyComp';
 import ListContact from './components/contact/ListContact';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+
+const Stack = createNativeStackNavigator();
 
 const App = ()=> {
+  
   return (
     <Provider store={store}>
-      <View style={styles.container}>
-        {/* <MyComp/> */}
-        <ListContact/>
-      </View>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name='Counter' component={MyComp}/>
+          <Stack.Screen name='Home' component={ListContact}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+      
     </Provider>
   );
 }

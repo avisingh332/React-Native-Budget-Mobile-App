@@ -6,26 +6,7 @@ import {addContact, removeContact, updateContact} from '../../redux/slices/conta
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from "uuid"
 
-const contactList = [
-    {
-        id:uuidv4(),
-        name:'Avinash Singh',
-        phoneNumber:"7905799499",
-        email:'avinash@test.com'
-    },  
-    {
-        id:uuidv4() ,
-        name:'Khushi ',
-        phoneNumber:"7905799499",
-        email:'khushi@test.com'
-    },
-    {
-        id:uuidv4() ,
-        name:'Mohan',
-        phoneNumber:"7905799499",
-        email: "mohan@test.com"
-    },
-  ] ;
+
 
 
 // Header component for the table
@@ -39,7 +20,7 @@ const TableHeader = () => (
   
   // Row component for the table
   const TableRow = ({ item }) => (
-    <View style={styles.row}>
+    <View key={item.id} style={styles.row}>
       <Text style={styles.cell}>{item.name}</Text>
       <Text style={styles.cell}>{item.phoneNumber}</Text>
       <Text style={styles.cell}>{item.email}</Text>
@@ -48,12 +29,12 @@ const TableHeader = () => (
 
 
 const ListContact = () => {
-  console.log("$$$$$$$$$$$$$ component is rendered");
   const [initialized, setInitialized] = useState(false);
   const [display, setDisplay]= useState(false);
   const contact = useSelector((state:RootState)=> state.contact);
   const dispatch = useDispatch();
   
+  console.log(`Entered into component value of display is ${display}`);
 
  useEffect(()=>{
   
@@ -64,8 +45,8 @@ const ListContact = () => {
       dispatch(addContact(item));
     }); 
 
-    console.log(`Size of Contact State is ${contact.length}`);
-    setInitialized(false);
+    console.log(`Number of contacts  are:  ${contact.length}`);
+    setInitialized(true);
   }
 
  },[])
@@ -89,11 +70,11 @@ const ListContact = () => {
   return (
     <View style={styles.container}>
     <TableHeader />
-    <FlatList
-      data={contact}
-      keyExtractor={(item) => item.id.toString()} // Ensure unique key for each item
-      renderItem={({ item }) => <TableRow item={item} />}
-    />
+    {
+      contact.map((item)=>{
+        return <TableRow item={item} />
+      })
+    }
     <View>
         <Button title='Add-New Contact' onPress={()=>setDisplay(!display)}/>
     </View>
@@ -152,7 +133,7 @@ const styles = StyleSheet.create({
     },
     row: {
       flexDirection: 'row',
-      borderBottomWidth: 1,
+      borderBottomWidth: 4,
       borderBottomColor: 'gray',
     },
     cell: {

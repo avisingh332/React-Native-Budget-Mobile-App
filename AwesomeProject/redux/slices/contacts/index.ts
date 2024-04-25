@@ -8,7 +8,7 @@ const contactSlice = createSlice({
     initialState : [],
     reducers:{
         addContact : (state,action)=>{
-            console.log('Payload is ', action.payload);
+            // console.log('Payload is ', action.payload);
            state = [...state, action.payload]
            return state;
         //    console.log("State is ", state);
