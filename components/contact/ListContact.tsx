@@ -33,23 +33,15 @@ const ListContact = () => {
   const [display, setDisplay]= useState(false);
   const contact = useSelector((state:RootState)=> state.contact);
   const dispatch = useDispatch();
-  
-  console.log(`Entered into component value of display is ${display}`);
 
- useEffect(()=>{
-  
-  console.log("############### Use Effect is Running ######################");
-  if(!initialized){
+  useEffect(()=>{
     
-    contactList.forEach((item)=>{
-      dispatch(addContact(item));
-    }); 
+    // console.log("############### Use Effect is Running ######################");
+    if(!initialized){
+      setInitialized(true);
+    }
 
-    console.log(`Number of contacts  are:  ${contact.length}`);
-    setInitialized(true);
-  }
-
- },[])
+  },[])
 
   // dispatch(addContact(contactList[1]));
   

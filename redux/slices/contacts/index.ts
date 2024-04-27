@@ -1,11 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { isConstructorDeclaration } from "typescript";
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from "uuid"
 
+
+const contactList : any[] = [
+    {
+        id: uuidv4(), 
+        name: 'Aviansh Singh', 
+        email:'avisingh332@gmail.com'
+    }, 
+    {
+        id: uuidv4(), 
+        name: 'Khushi', 
+        email: 'khushi@gmail.com'
+    }
+];
+{[{}, {}]}
+
+[{},{}, ]
 const contactSlice = createSlice({
     name:'contact',
-    initialState : [],
+    initialState : contactList,
     reducers:{
         addContact : (state,action)=>{
             // console.log('Payload is ', action.payload);

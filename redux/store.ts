@@ -1,11 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './slices/counter/index';
 import contactReducer from './slices/contacts/index'
-
+import budgetReducer from './slices/budget/index';
 export const store = configureStore({
     reducer:{
         counter : counterReducer,
-        contact: contactReducer
+        contact: contactReducer,
+        budget: budgetReducer
     },
 });
 

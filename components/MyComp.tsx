@@ -2,26 +2,17 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../redux/store';
-import { decrement, increment } from '../redux/slices/counter';
+import counter, { decrement, increment } from '../redux/slices/counter';
 
-const list = [
-  {
-    id:1, 
-    name:'avinash'
-  },
-  {
-    id:2, 
-    name:'khushi'
-  }
-];
 const MyComp = (props) => {
 
+  const dispatch = useDispatch();
   return (
     <View>
-      {
+      {/* {
         list.map((item)=><Text key ={item.id}>{item.name}</Text>)
       }
-      <Button title='Contacts' onPress={()=>{props.navigation.navigate("Home")}}/>
+      <Button title='Contacts' onPress={()=>{props.navigation.navigate("Home")}}/> */}
     </View>
   );
   // const count = useSelector((state:RootState)=> state.counter);
