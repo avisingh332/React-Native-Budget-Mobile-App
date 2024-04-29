@@ -66,7 +66,14 @@ const budgetSlice = createSlice({
     initialState: initialState, 
     reducers: {
         addExpense: (state, action) =>{
-            state.expenseList.push(action.payload);
+            const expense = action.payload;
+            // find The category 
+            const idx =state.categoryList.findIndex((item)=>item.id==expense.categoryId);
+            const remainingAmount =state.categoryList[idx].totalBudget - state.categoryList[idx].budgetSpend;
+            if(expense.amount > remainingAmount) return ;
+            state.expenseList.push(expense);
+            state.categoryList[idx].itemCount +=1;
+            state.categoryList[idx].budgetSpend +=expense.amount;
             return state;
         }, 
         updateExpense: (state, action) => {
@@ -93,7 +100,8 @@ const budgetSlice = createSlice({
             return state;
         }, 
         removeCategory: (state, action) =>{
-            state.categoryList.filter(item => item.id!= action.payload.id);
+            state.categoryList = state.categoryList.filter(item => item.id!= action.payload);
+            state.expenseList = state.expenseList.filter(item=>item.categoryId != action.payload);
             return state;
         }, 
     }

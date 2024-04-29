@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../../redux/store'
-import { View, Text, FlatList, StyleSheet, TouchableOpacity,Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity,Image, ScrollView, ScrollViewBase } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import CircularChart from './CircularChart';
@@ -29,15 +29,17 @@ import CategoryList from './CategoryList';
   );
 
 const BudgetScreen = (props) => {
-
     const budget = useSelector((state:RootState)=>state.budget);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
+    console.log(budget.categoryList);
     useEffect(()=>{
 
     }, []);
 
     return (
+
         <SafeAreaView style={{backgroundColor:'#2C4E80', height:'100%'}}>
+          <ScrollView>
             {/* Header Section  */}
             <View style={styles.c1}>
               <View style={{
@@ -75,9 +77,10 @@ const BudgetScreen = (props) => {
             />
           </View> */}
           
-          <CategoryList/>
-
+            <CategoryList categoryList={budget.categoryList} navigation ={props.navigation}/>
+          
           {/* Create Button */}
+          </ScrollView>
           <TouchableOpacity style={styles.addNewCategoryBtn} onPress={()=>{props.navigation.navigate('Add Category')}}>
             <AntDesign  name="pluscircle" size={42} color="black" />
           </TouchableOpacity>
@@ -90,7 +93,8 @@ const BudgetScreen = (props) => {
       justifyContent:'space-between',
       display:'flex',
       flexDirection:'row',
-      marginHorizontal:30
+      marginHorizontal:18, 
+      marginTop:10
     },
     c2:{
       marginTop:20,

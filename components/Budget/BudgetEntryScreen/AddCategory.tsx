@@ -1,24 +1,23 @@
 import React, {useState} from 'react'
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native'
 import ColorPicker from './ColorPicker'
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import {v4 as uuidv4} from 'uuid'
-import { useDispatch } from 'react-redux';
-// import type { RootState } from '../../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import type { RootState } from '../../../redux/store';
 
 import { addCategory } from '../../../redux/slices/budget';
 
 const AddNewCategory = () => {
-  // const budget = useSelector((state:RootState)=>state.budget);
+  const budget = useSelector((state:RootState)=>state.budget);
   const dispatch = useDispatch();
 
   const [selectedColor, setSelectedColor]= useState('#FC4100');
   const[inputForm, setInputForm] =useState({
-    id:uuidv4(),
     iconName:'',
-    category:'', 
-    totalBudget:''
+    name:'', 
+    totalBudget:'',
   });
 
   const handleChange = (field:string, value:string) =>{
@@ -28,12 +27,30 @@ const AddNewCategory = () => {
     })
   }
   function handleSubmit() {
-    dispatch(addCategory({...inputForm, color:selectedColor}));
+    const category = {
+       id:uuidv4(),
+       iconName:inputForm.iconName,
+       name:inputForm.name, 
+       totalBudget:parseInt(inputForm.totalBudget,10),
+       itemCount:0,
+       budgetSpend:0,
+       color:selectedColor
+    }
+    if(
+      category.iconName==''||
+      category.name==''||
+      isNaN(category.totalBudget)
+    ){
+      Alert.alert("Please input Correct Values in all Fields");
+      return;
+    }
+
+    dispatch(addCategory(category));
+
     setInputForm({
-      id:uuidv4(),
       iconName:'',
-      category:'', 
-      totalBudget:''
+      name:'', 
+      totalBudget:'',
     })
   }
 
@@ -54,12 +71,12 @@ const AddNewCategory = () => {
         <TextInput
         placeholder='Category Name'
         style={{fontSize:15, width:'100%'}}
-        value={inputForm.category}
-        onChangeText={(text)=>{handleChange('category', text)}}
+        value={inputForm.name}
+        onChangeText={(text)=>{handleChange('name', text)}}
         />
       </View>
 
-      {/* Expense Input */}
+      {/* Total Budget */}
       <View style={{...styles.inputWrapper,marginTop:25}}>
       <FontAwesome name="rupee" size={24} color="black" />
         <TextInput

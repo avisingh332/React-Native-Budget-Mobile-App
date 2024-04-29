@@ -10,6 +10,8 @@ import BudgetScreen from './components/Budget/BudgetScreen';
 import BudgetEntryScreen from './components/Budget/BudgetEntryScreen';
 import TestComp from './components/TestComp';
 import AddNewCategory from './components/Budget/BudgetEntryScreen/AddCategory';
+import CategoryDetails from './components/Budget/BudgetScreen/CategoryDetails';
+import AddExpense from './components/Budget/BudgetScreen/AddExpense';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,12 +21,14 @@ const App = ()=> {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name ='Budget' component={BudgetScreen}/>
+          <Stack.Screen name ='Budget' options={{headerShown:false}} component={BudgetScreen}/>
           <Stack.Screen name='Budget Entry' component={BudgetEntryScreen}/>
           <Stack.Screen name='Counter' component={MyComp}/>
           <Stack.Screen name='Home' component={ListContact}/>
           <Stack.Screen name='Test' component={TestComp}/>
           <Stack.Screen name ='Add Category' component = {AddNewCategory}/>
+          <Stack.Screen name ='Category Details' component={CategoryDetails}/>
+          <Stack.Screen name='Add Expense' component={AddExpense}/>
         </Stack.Navigator>
       </NavigationContainer>
       
