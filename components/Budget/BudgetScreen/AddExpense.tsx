@@ -27,7 +27,6 @@ const AddExpense = (props) => {
       amount:parseInt(inputForm.amount,10), 
       note: inputForm.note
     }
-    console.log(expense);
     if(expense.title==''|| isNaN(expense.amount)|| expense.note==''){
       Alert.alert("Please Provide Correct Value to all Input Fileds");
       return;

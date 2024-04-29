@@ -13,8 +13,6 @@ const CategoryDetails = (props) => {
     const expenseList = useSelector((state:RootState)=>state.budget).expenseList.filter(ex=>ex.categoryId==id);
     const dispatch = useDispatch();
     const handleDelete = () =>{
-        console.log("Handling Delete");
-        console.log("id is", id);
         dispatch(removeCategory(id));
         props.navigation.navigate('Budget');
     }
@@ -63,7 +61,7 @@ const CategoryDetails = (props) => {
                     expenseList.map((expense,index)=>{
                         return(
                             // expenseContainer
-                            <View style={styles.expenseContainer} >
+                            <View key={index} style={styles.expenseContainer} >
                                 {/* expenseIconContainer */}
                                 <View style={{justifyContent:'flex-start'}} >
                                     <Text style={{...styles.iconText, backgroundColor:'green'}}>Xy</Text>

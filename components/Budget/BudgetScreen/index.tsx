@@ -30,8 +30,6 @@ import CategoryList from './CategoryList';
 
 const BudgetScreen = (props) => {
     const budget = useSelector((state:RootState)=>state.budget);
-    // const dispatch = useDispatch();
-    console.log(budget.categoryList);
     useEffect(()=>{
 
     }, []);
