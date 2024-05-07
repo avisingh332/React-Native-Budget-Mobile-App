@@ -21,7 +21,7 @@ const CategoryList = ({categoryList, navigation}) => {
               <View style={styles.subContainer}> 
                 <View>
                   <Text style={styles.categoryText}>{category.name}</Text>
-                  <Text style ={styles.itemCountText}>0 items </Text>
+                  <Text style ={styles.itemCountText}>{category.itemCount} items </Text>
                 </View>
                 <Text style={styles.totalAmountText}> $ {category.totalBudget} </Text>
               </View>
