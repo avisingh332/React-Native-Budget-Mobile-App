@@ -6,6 +6,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { removeCategory } from '../../../redux/slices/budget';
 import { AntDesign } from '@expo/vector-icons';
 
+function calculatePercentage(budgetSpend, totalBudget){
+  var percentage = (budgetSpend/totalBudget)*100;
+  return percentage;
+}
 
 const CategoryDetails = (props) => {
     const id= props.route.params;
@@ -48,6 +52,10 @@ const CategoryDetails = (props) => {
         <View style={{display:'flex', flexDirection:'row', justifyContent:'space-between', padding:15}}>
           <Text style={{fontSize:18}}>$ {category.budgetSpend}</Text>
           <Text style={{fontSize:18}}>$ {category.totalBudget}</Text>
+        </View>
+
+        <View style={styles.progressBarMainContainer}>
+          <View style={[styles.progressBarSubContainer,{width:`${calculatePercentage(category.budgetSpend,category.totalBudget)}%`}]}></View>
         </View>
         <View style={{marginTop:10}}>
             {
@@ -138,6 +146,19 @@ const styles = StyleSheet.create({
     alignItems:'center',
     width:'80%',
     padding:10
+  },
+  progressBarMainContainer:{
+    marginTop:5,
+    borderRadius:99,
+    width:'100%',
+    height:15,
+    backgroundColor:'gray'
+  },
+  progressBarSubContainer:{
+    borderRadius:99,
+    width:'40%',
+    height:15,
+    backgroundColor:'blue'
   }
 })
 

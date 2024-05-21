@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { View, Text, StyleSheet, TextInput, useAnimatedValue, TouchableOpacity, Alert } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { addExpense } from '../../../redux/slices/budget'
+import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid';
 const AddExpense = (props) => {
   const categoryId= props.route.params;

@@ -1,6 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import counterReducer from './slices/counter/index';
-import contactReducer from './slices/contacts/index'
 import budgetReducer from './slices/budget/index';
 import { persistReducer } from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -13,8 +11,6 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    counter : counterReducer,
-    contact: contactReducer,
     budget: budgetReducer
 })
 

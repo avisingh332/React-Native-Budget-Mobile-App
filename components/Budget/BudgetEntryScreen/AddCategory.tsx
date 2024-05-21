@@ -3,6 +3,7 @@ import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'reac
 import ColorPicker from './ColorPicker'
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import 'react-native-get-random-values';
 import {v4 as uuidv4} from 'uuid'
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '../../../redux/store';
